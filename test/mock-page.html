@@ -1,0 +1,20 @@
+<html>
+<head>
+	<title>Mock Page to Be Prefetched</title>
+	<!-- script in head -->
+	<script type="text/javascript" src="/mock-script.js"></script>
+	<!-- css in head -->
+	<link rel="stylesheet" type="text/css" href="/mock-style.css">
+</head>
+<body>
+
+<!-- inline body script -->
+<script>
+	function mockBodyScript() {
+		console.log("mockBodyScript ran");
+	}
+</script>
+<!-- script at end of bodsy -->
+<script type="text/javascript" src="/mock-script2.js"></script>
+</body>
+</html>
