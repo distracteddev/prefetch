@@ -18,7 +18,7 @@ function httpGet(theUrl, cb) {
   }
 
   if (!httpRequest) {
-    alert('Giving up :( Cannot create an XMLHTTP instance');
+    cb('Giving up :( Cannot create an XMLHTTP instance');
     return false;
   }
 
@@ -28,7 +28,7 @@ function httpGet(theUrl, cb) {
   	if (httpRequest.readyState === 4) {
   	    // everything is good, the response is received
   	    if (httpRequest.status === 200) {
-  	    	cb(null, httpRequest.responseText);
+  	    	cb(null, httpRequest.responseText, httpRequest);
           // console.log(httpRequest.getAllResponseHeaders());
   	    } else {
   	    	cb('Error: Request for url ' + theUrl + ' received code ' + httpRequest.status);

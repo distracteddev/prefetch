@@ -19,7 +19,7 @@ function httpGet(theUrl, cb) {
   }
 
   if (!httpRequest) {
-    alert('Giving up :( Cannot create an XMLHTTP instance');
+    cb('Giving up :( Cannot create an XMLHTTP instance');
     return false;
   }
 
@@ -29,7 +29,7 @@ function httpGet(theUrl, cb) {
   	if (httpRequest.readyState === 4) {
   	    // everything is good, the response is received
   	    if (httpRequest.status === 200) {
-  	    	cb(null, httpRequest.responseText);
+  	    	cb(null, httpRequest.responseText, httpRequest);
           // console.log(httpRequest.getAllResponseHeaders());
   	    } else {
   	    	cb('Error: Request for url ' + theUrl + ' received code ' + httpRequest.status);
@@ -90,10 +90,11 @@ var test = require('tape');
 var prefetch = require('../index.js');
 
 test('prefetch', function(t) {
-	t.plan(2);
+	t.plan(3);
 	prefetch.prefetch('mock-page.html', function (err, assets) {
-		t.ok(!err);
-		t.equal(assets.length, 3);
+		t.ok(!err, 'No errors should be returned');
+		t.equal(assets.length, 3, '3 Assets should have been fetched');
+		t.equal(document.getElementsByTagName('img').length, 3, '3 images should have been created');
 	});
 });
 },{"../index.js":1,"tape":3}],4:[function(require,module,exports){
